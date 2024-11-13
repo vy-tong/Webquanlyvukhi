@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+ <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="{% static 'img/Logo_TSQTT.png' %}" style="width:40%;" class="w3-round"><br><br>
+    <h4><b>QUẢN LÍ</b></h4>
+    <p class="w3-text-grey"></p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
+    <a href="/about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-pin fa-fw w3-margin-right"></i>About</a> 
+    <a style="display: {{user_not_login}}" href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Đăng nhập</a> 
+    <button style="display:{{user_login}};" onclick="w3_close();" class="w3-bar-item w3-button w3-padding dropdown-btn"><i class="fa fa-user fa-fw w3-margin-right"></i>
+    <span>Hello, {{request.user}}</span>
+    </button>
+    <div style="display: none;">
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-fw w3-margin-right"></i> Trang cá nhân</a>
+      <a href="/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-fw w3-margin-right"></i> Đăng xuất</a>
+    </div>
+    </div>
+
+</nav>
+ {% endblock %}
+
+
+{% block content %}
+<!-- https://images.pexels.com/photos/889709/pexels-photo-889709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 -->
+<div class="w3-row-padding">
+  <a href="/vukhi"><div class="w3-third w3-container w3-margin-bottom">
+    <img src="{% static 'img/vukhi.jpg' %}" alt="Weapon" style="width:100%" class="w3-hover-opacity">
+    <div class="w3-container w3-white"></a>
+      <p><b>Vũ khí</b></p>
+      <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+    </div>
+  </div>
+  <a href="/trangbi"><div class="w3-third w3-container w3-margin-bottom">
+    <img src="{% static 'img/trangbi.jpg' %}" alt="Items" style="width:100%" class="w3-hover-opacity">
+    <div class="w3-container w3-white"></a>
+      <p><b>Trang bị</b></p>
+      <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+    </div>
+  </div>
+{% endblock %}
+  
+  
+
+
+  

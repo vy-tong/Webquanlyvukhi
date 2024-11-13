@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trang bị{% endblock %}
+
+{% block content %}
+<div>
+<h2 style="text-align: center; color: blue;">BIÊN CHẾ TRANG BỊ</h2>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mã Học Viên</th>
+        <th>Trang bị</th>
+        <th>Đơn vị</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for x in Bienches %}
+        <tr>
+            <th>{{x.id}}</th>
+            <th>{{x.mahv_id}}</th>
+            <th>{{x.matb_id}}</th>
+            <th>{{x.madv_id}}</th>
+          </tr>
+        {% endfor%}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}
