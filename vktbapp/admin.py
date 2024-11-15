@@ -1,16 +1,18 @@
 from django.contrib import admin
-from .models import *
 from django.contrib.auth.admin import UserAdmin
+from .models import UserMod, DonVi, Hocvien, VuKhi, TrangBi, BienCheVuKhi, BienCheTrangBi, Thuoc
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = usermod
-    list_display = ["email", "username",]
+    model = UserMod
+    list_display = ['username', 'email', 'is_canbo', 'is_hocvien']
+    fieldsets = UserAdmin.fieldsets + (
+        ('Additional Info', {'fields': ('phone', 'avatar', 'is_canbo', 'is_hocvien')}),
+    )
 
-admin.site.register(usermod, CustomUserAdmin)   
+admin.site.register(UserMod, CustomUserAdmin)
 
 # Đăng ký model DonVi
 @admin.register(DonVi)

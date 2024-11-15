@@ -1,10 +1,12 @@
 .navbar
 {
-    background-color: yellowgreen !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
 }
-.navbar li a {color:red !important;font-weight: bold !important;
+.navbar li a {color:var(--text-light) !important;font-weight: 500 !important;transition: all 0.3s ease;
 }
-.navbar li a:hover {color: black !important;
+.navbar li a:hover {color: var(--accent-color) !important;transform: translateY(-2px);
 }
 .carousel-inner img{ width: 100%;}
 .carousel-caption {
@@ -110,3 +112,16 @@
         float: right;
         padding-right: 8px;
       }
+/* Modern Card Design */
+.card {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
