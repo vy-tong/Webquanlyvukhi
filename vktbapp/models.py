@@ -120,3 +120,37 @@ class Thuoc(models.Model):
 
     def __str__(self):
         return f"{self.macb} - {self.mahv} - {self.madv}"
+
+
+class UserMod(AbstractUser):
+    phone = models.CharField(max_length=20, null=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True)
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True)
+
+    def __str__(self):
+        return self.name
+
+class VuKhi(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    created_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='vukhi/', null=True)
+    
+    def __str__(self):
+        return self.name
+
+class TrangBi(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    created_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='trangbi/', null=True)
+    
+    def __str__(self):
+        return self.name
