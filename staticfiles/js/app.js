@@ -1,49 +1,65 @@
-// Data Table Enhancement
+// Initialize DataTables
 document.addEventListener('DOMContentLoaded', function() {
     const tables = document.querySelectorAll('.data-table');
     tables.forEach(table => {
         new DataTable(table, {
-            pageLength: 10,
-            responsive: true,
-            dom: 'Bfrtip',
-            buttons: ['copy', 'excel', 'pdf', 'print'],
             language: {
-                search: "Tìm kiếm:",
-                lengthMenu: "Hiển thị _MENU_ mục",
-                info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
-                paginate: {
-                    first: "Đầu",
-                    last: "Cuối",
-                    next: "Tiếp",
-                    previous: "Trước"
-                }
-            }
+                url: '/static/js/datatables-vi.json'
+            },
+            responsive: true,
+            pageLength: 10
         });
-    });
-
-    // Dynamic Search
-    const searchInputs = document.querySelectorAll('.search-input');
-    searchInputs.forEach(input => {
-        input.addEventListener('input', debounce(function(e) {
-            const searchTerm = e.target.value;
-            filterContent(searchTerm);
-        }, 300));
     });
 });
 
-// Notification System
-const NotificationSystem = {
-    show(message, type = 'info') {
-        const toast = document.createElement('div');
-        toast.className = `toast toast-${type} show`;
-        toast.innerHTML = `
-            <div class="toast-header">
-                <strong>${type.toUpperCase()}</strong>
-                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
-            </div>
-            <div class="toast-body">${message}</div>
-        `;
-        document.querySelector('.toast-container').appendChild(toast);
-        setTimeout(() => toast.remove(), 5000);
+// Form validation
+const validateForm = (formElement) => {
+    const inputs = formElement.querySelectorAll('input[required]');
+    let isValid = true;
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('is-invalid');
+        } else {
+            input.classList.remove('is-invalid');
+        }
+    });
+    return isValid;
+};
+
+// Sidebar controls
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Dropdown toggle
+function toggleDropdown() {
+    var dropdownContent = document.querySelector(".dropdown-container");
+    dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
+}
+
+// API handlers
+const api = {
+    async get(endpoint) {
+        const response = await fetch(endpoint);
+        return response.json();
+    },
+    
+    async post(endpoint, data) {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify(data)
+        });
+        return response.json();
     }
 }; 

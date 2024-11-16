@@ -1,18 +1,46 @@
 {% load static %}
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-
   <div class="w3-container">
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Logo_TSQTT.png" style="width:40%;" class="w3-round"><br><br>
+    <img src="{% static 'img/Logo_TSQTT.png' %}" style="width:40%;" class="w3-round"><br><br>
     <h4><b>QUẢN LÍ</b></h4>
-    <p class="w3-text-grey"></p>
-  </div>
-  <div class="w3-bar-block">
-    <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
-    <a href="/about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
-    <button onclick="document.getElementById('id01').style.display='block'; w3_close();" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Đăng nhập</button>
+    <p class="w3-text-grey">Hệ thống quản lý chuyên nghiệp</p>
   </div>
 
+  <div class="w3-bar-block">
+    <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-padding {% if request.path == '/home' %}w3-text-teal{% endif %}">
+      <i class="fa fa-th-large fa-fw w3-margin-right"></i>Trang Chủ
+    </a>
+    <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-padding {% if request.path == '/about' %}w3-text-teal{% endif %}">
+      <i class="fa fa-map-pin fa-fw w3-margin-right"></i>Về Chúng Tôi
+    </a>
+    {% if user.is_authenticated %}
+      <button onclick="toggleDropdown()" class="w3-bar-item w3-button w3-padding dropdown-btn">
+        <i class="fa fa-user fa-fw w3-margin-right"></i>
+        <span>Xin chào, {{ user.username }}</span>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container" style="display: none;">
+        <a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-padding">
+          <i class="fa fa-user-circle w3-margin-right"></i>Trang cá nhân
+        </a>
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-padding">
+          <i class="fa fa-sign-out w3-margin-right"></i>Đăng xuất
+        </a>
+      </div>
+    {% else %}
+      <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding">
+        <i class="fa fa-user fa-fw w3-margin-right"></i>Đăng nhập
+      </a>
+    {% endif %}
+  </div>
+  
+  <div class="w3-panel w3-large">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
 </nav>
