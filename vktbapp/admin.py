@@ -31,15 +31,15 @@ class HocvienAdmin(admin.ModelAdmin):
 @admin.register(VuKhi)
 class VuKhiAdmin(admin.ModelAdmin):
     list_display = ('masung', 'makn', 'tenvk', 'loaivk', 'ghichu')
-    search_fields = ('masung', 'tenvk')
     list_filter = ('loaivk',)
+    search_fields = ('masung', 'makn', 'tenvk')
 
 # Đăng ký model TrangBi
 @admin.register(TrangBi)
 class TrangBiAdmin(admin.ModelAdmin):
     list_display = ('matb', 'tentb', 'loai', 'tinhtrang')
-    search_fields = ('matb', 'tentb')
     list_filter = ('loai', 'tinhtrang')
+    search_fields = ('matb', 'tentb')
 
 # Đăng ký model BienCheVuKhi
 @admin.register(BienCheVuKhi)

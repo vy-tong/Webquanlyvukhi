@@ -1,1 +1,14 @@
+{% load static %}
 {% extends 'base.html' %}
+{% block title %}Trang Cá Nhân{% endblock %}
+
+{% block content %}
+<div class="w3-container w3-padding-large">
+  <h2>Thông Tin Cá Nhân</h2>
+  <div class="w3-card w3-padding">
+    <p><strong>Tên người dùng:</strong> {{request.user}}</p>
+    <p><strong>Email:</strong> {{request.user.email}}</p>
+    <p><strong>Ngày tham gia:</strong> {{request.user.date_joined|date:"d/m/Y"}}</p>
+  </div>
+</div>
+{% endblock %}

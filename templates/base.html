@@ -36,8 +36,9 @@
     <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
     <a href="/about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-pin fa-fw w3-margin-right"></i>About</a> 
     <a style="display: {{user_not_login}}" href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Đăng nhập</a> 
-    <button style="display:{{user_login}};" onclick="w3_close();" class="w3-bar-item w3-button w3-padding dropdown-btn"><i class="fa fa-user fa-fw w3-margin-right"></i>
-    <span>Hello, {{request.name}}</span>
+    <button style="display:{{user_login}};" onclick="toggleDropdown();" class="w3-bar-item w3-button w3-padding dropdown-btn">
+      <i class="fa fa-user fa-fw w3-margin-right"></i>
+      <span>Xin chào, {{request.user}}</span>
     </button>
     <div style="display: none;">
       <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-fw w3-margin-right"></i> Trang cá nhân</a>
@@ -151,6 +152,15 @@ function w3_open() {
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
+}
+
+function toggleDropdown() {
+  var dropdownContent = document.querySelector(".dropdown-container");
+  if (dropdownContent.style.display === "none") {
+    dropdownContent.style.display = "block";
+  } else {
+    dropdownContent.style.display = "none";
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@ class DonVi(models.Model):
         db_table = "don_vi"
 
     def __str__(self):
-        return f"{self.madv} - ({self.tendv})"
+        return self.tentb
 
 
 class UserMod(AbstractUser):
@@ -42,54 +42,37 @@ class UserMod(AbstractUser):
         return self.username
 
 
-class Hocvien(models.Model):
-    mahv = models.CharField(max_length=255, primary_key=True)  
-    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)  # Foreign key to DonVi
-    tenhv = models.CharField(max_length=255)
-    
-    class Meta:        
-        db_table = "hoc_vien"
-
-    def __str__(self):
-        return f"{self.mahv} - ({self.tenhv})"
-
-
 class VuKhi(models.Model):
-    LOAI_VU_KHI_CHOICES = [
-        (0, 'Hoan Cai'),
-        (1, 'SSCD'),
-    ]
-
-    masung = models.CharField(max_length=255, primary_key=True)
-    makn = models.CharField(max_length=255)
-    tenvk = models.TextField()
-    loaivk = models.BooleanField(choices=LOAI_VU_KHI_CHOICES)  # Dùng choices để hiển thị "Hoan Cai" hoặc "SSCD"
-    ghichu = models.TextField()
+    mavk = models.CharField(max_length=10, primary_key=True)
+    makn = models.CharField(max_length=10)
+    tenvk = models.CharField(max_length=100)
+    loaivk = models.CharField(max_length=50)
+    ghichu = models.TextField(blank=True, null=True)
 
     class Meta:        
         db_table = "vu_khi"
 
     def __str__(self):
-        return f"{self.tenvk} - {self.masung} - {self.makn} - {self.loaivk} - {self.ghichu}"
+        return self.tenvk
 
 
 class TrangBi(models.Model):
-    matb = models.CharField(max_length=255, primary_key=True)
-    tentb = models.TextField()
-    loai = models.TextField()
-    tinhtrang = models.TextField()
+    matb = models.CharField(max_length=10, primary_key=True)
+    tentb = models.CharField(max_length=100)
+    loai = models.CharField(max_length=50)
+    tinhtrang = models.CharField(max_length=50)
 
     class Meta:        
         db_table = "trang_bi"
 
     def __str__(self):
-        return f"{self.tentb} - {self.matb} - {self.loai} - {self.tinhtrang}"
+        return self.tentb
 
 
 class BienCheVuKhi(models.Model):
-    mavk = models.ForeignKey(VuKhi, on_delete=models.CASCADE)  # Foreign key to VuKhi
-    mahv = models.ForeignKey(Hocvien, on_delete=models.CASCADE)  # Foreign key to Hocvien
-    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)  # Foreign key to DonVi
+    mavk = models.ForeignKey(VuKhi, on_delete=models.CASCADE)
+    mahv = models.ForeignKey('Hocvien', on_delete=models.CASCADE)
+    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)
 
     class Meta:        
         db_table = "bien_che_vk"
@@ -99,9 +82,9 @@ class BienCheVuKhi(models.Model):
 
 
 class BienCheTrangBi(models.Model):
-    matb = models.ForeignKey(TrangBi, on_delete=models.CASCADE)  # Foreign key to TrangBi
-    mahv = models.ForeignKey(Hocvien, on_delete=models.CASCADE)  # Foreign key to Hocvien
-    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)  # Foreign key to DonVi
+    matb = models.ForeignKey(TrangBi, on_delete=models.CASCADE)
+    mahv = models.ForeignKey('Hocvien', on_delete=models.CASCADE)
+    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)
 
     class Meta:        
         db_table = "bien_che_tb"
@@ -111,8 +94,8 @@ class BienCheTrangBi(models.Model):
 
 
 class Thuoc(models.Model):
-    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)  # Foreign key to DonVi
-    username = models.ForeignKey(UserMod, on_delete=models.CASCADE)  # Foreign key to Hocvien
+    madv = models.ForeignKey(DonVi, on_delete=models.CASCADE)
+    username = models.ForeignKey(UserMod, on_delete=models.CASCADE)
     
 
     class Meta:
@@ -126,27 +109,5 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True)
 
-    def __str__(self):
-        return self.name
-
-class VuKhi(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=0)
-    created_date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='vukhi/', null=True)
-    
-    def __str__(self):
-        return self.name
-
-class TrangBi(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=0)
-    created_date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='trangbi/', null=True)
-    
     def __str__(self):
         return self.name

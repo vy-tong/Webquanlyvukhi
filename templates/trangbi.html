@@ -1,11 +1,12 @@
-{% extends 'base.html' %}
 {% load static %}
+{% extends 'base.html' %}
 {% block title %}Trang bị{% endblock %}
 
 {% block content %}
 <div>
 <h2 style="text-align: center; color: blue;">BIÊN CHẾ TRANG BỊ</h2>
-<table class="table table-striped">
+<div class="table-responsive">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>STT</th>
@@ -24,7 +25,8 @@
           </tr>
         {% endfor%}
     </tbody>
-</table>
+  </table>
+</div>
 </div>
 
 {% endblock %}

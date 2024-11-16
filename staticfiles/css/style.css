@@ -1,0 +1,127 @@
+.navbar
+{
+    background-color: var(--primary-color) !important;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+.navbar li a {color:var(--text-light) !important;font-weight: 500 !important;transition: all 0.3s ease;
+}
+.navbar li a:hover {color: var(--accent-color) !important;transform: translateY(-2px);
+}
+.carousel-inner img{ width: 100%;}
+.carousel-caption {
+    position: absolute;
+    bottom: 20%;
+}
+.container{max-width: 1000px;}
+.carousel-caption h1 {
+    font-size: 400%;
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 15px #000;
+}
+.carousel-caption h3 {    
+    color: blue;
+    font-weight: bold;
+   
+}
+.footer {
+     width: 100%;
+    background-color: goldenrod;
+    color: white;
+    text-align: center;
+  }
+/*Media Quẻy*/
+@media (max-width:992px)
+{
+    .carousel-caption {       
+        top: 20%;
+    }
+    .carousel-caption h1 {
+        font-size: 250%;
+    }
+    .carousel-caption h3 {    
+        font-size: 160%;
+    }
+}
+@media (max-width:768px)
+{
+    .carousel-caption {       
+        top: 20%;
+    }
+    .carousel-caption h1 {
+        font-size: 220%;
+    }
+    .carousel-caption h3 {    
+        font-size: 140%;
+    }
+    
+}
+@media (max-width:576px)
+{
+    .carousel-caption {       
+        top: 10%;
+    }
+    .carousel-caption h1 {
+        font-size: 150%;
+    }
+    .carousel-caption h3 {    
+        font-size: 110%;
+    }
+}
+/*.jumbotron {
+    background-image: url(./../images/anh3.jfif);
+}*/
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
+
+      
+      /* Style the sidenav links and the dropdown button */
+      .sidenav a{
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+      }
+      .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-left: 8px;
+      }
+      .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+      }
+/* Modern Card Design */
+.card {
+  background: var(--bg-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
