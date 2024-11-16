@@ -16,18 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from vktbapp import views
 
 
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
-    path('',views.viewpage, name='base'),
+    path('', views.viewpage, name='base'),
     path('admin/', admin.site.urls),
-    path('home/', views.homepage),
-    path('about/', views.aboutpage),
-    path('vukhi/',views.vukhipage),
-    path('trangbi/',views.trangbipage),
+    path('home/', views.homepage, name='home'),
+    path('about/', views.aboutpage, name='about'),
+    path('vukhi/', views.vukhipage, name='vukhi'),
+    path('trangbi/', views.trangbipage, name='trangbi'),
     path('login/', views.loginpage, name='login'),
     path('logout/', views.logout_func, name='logout'),
-]
+    path('profile/', views.profilepage, name='profile'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -16,7 +16,7 @@ class DonVi(models.Model):
         db_table = "don_vi"
 
     def __str__(self):
-        return self.tentb
+        return self.tendv  # Changed from tentb to tendv
 
 
 class UserMod(AbstractUser):

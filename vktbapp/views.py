@@ -19,17 +19,18 @@ def viewpage(request):
     context={'user_not_login':user_not_login, 'user_login':user_login}
     return render(request, 'base.html',context)
 
-def loginpage(request): 
-     if request.method == 'POST':
+def loginpage(request):
+    if request.method == 'POST':
         username = request.POST['uname']
         password = request.POST['psw']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/home')  # Chuyển hướng đến trang chính
+            messages.success(request, 'Đăng nhập thành công!')
+            return redirect('home')
         else:
-            return render(request,"login.html",{'key':"Tên đăng nhập hoặc mật khẩu không chính xác!!!"})
-     return render(request, "login.html")
+            messages.error(request, 'Tên đăng nhập hoặc mật khẩu không chính xác!')
+    return render(request, "login.html")
 
 
 def user_log(request):
@@ -62,6 +63,7 @@ def vukhipage(request):
     context = {'user_not_login':user_not_login, 'user_login':user_login, "Bienches":Bienches}
     return render(request, "vukhi.html", context)
 
+@login_required(login_url="login")
 def trangbipage(request):   
     if request.user.is_authenticated:
         user_not_login = "none"
@@ -101,3 +103,17 @@ def aboutpage(request):
         user_login = "none"
     context={'user_not_login':user_not_login, 'user_login':user_login}
     return render(request, 'about.html', context)
+
+@login_required(login_url="login")
+def profilepage(request):
+    if request.user.is_authenticated:
+        user_not_login = "none"
+        user_login = "unset"
+    else:
+        user_not_login = "unset"
+        user_login = "none"
+    context = {
+        'user_not_login': user_not_login,
+        'user_login': user_login
+    }
+    return render(request, 'profile.html', context)
